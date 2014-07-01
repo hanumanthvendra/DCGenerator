@@ -19,7 +19,7 @@
         <echo message="Deleting ${app.name}'s war directory and web archive file ..."/>
         <delete dir="${basedir}/war"/>
         <delete file="${basedir}/${app.name}.war"/>
-	<echo ="Files are deleted"/>
+	<echo message="Files are deleted"/>
     </target>
 
     <target name="prepare" description="Creates the Web Application's war directory" depends="clean,init">

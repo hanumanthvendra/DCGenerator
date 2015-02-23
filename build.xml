@@ -3,6 +3,18 @@
     <property file="${user.home}/build.properties"/>
 	<property name="app.name" value="DCgenerator1" /> 
     <property file="build.properties"/>
+
+
+     <!-- Sonar database configuration -->
+     <property name="sonar.jdbc.url" value="${sonar.db.url}" />
+     <property name="sonar.jdbc.driverClassName" value="${sonar.db.driverClass}" />
+     <property name="sonar.jdbc.username" value="${sonar.db.username}" />
+     <property name="sonar.jdbc.password" value="${sonar.db.password}" />
+
+     <!-- Sonar url -->
+     <property name="sonar.host.url" value="${sonar.web.url}" />
+
+
 	
 
     <path id="classpath1">
@@ -10,6 +22,21 @@
             <include name="*.jar"/>
         </fileset>
     </path>
+
+
+     <!-- Add the Sonar task -->
+     <target name="sonar" depends="compile" description="Sonar static code analysis" >
+        
+         <taskdef name="sonar" classname="org.sonar.ant.SonarTask"
+                       classpath="${ant.home}/lib/sonar-ant-task-2.1.jar" /> 
+
+<property name="sonar.sources" value="${src.home}" />
+
+<path id="sonar.libraries">
+                 <path refid="compile.classpath"/>
+             </path>     
+         <sonar key="${artifact.id}" version="${app.version}" />
+    </target>
 
     <target name="init">
         <tstamp/>

@@ -25,7 +25,7 @@
 
 
      <!-- Add the Sonar task -->
-     <target name="sonar" depends="compile" description="Sonar static code analysis" >
+     <target name="sonar" depends="build" description="Sonar static code analysis" >
         
          <taskdef name="sonar" classname="org.sonar.ant.SonarTask"
                        classpath="${ant.home}/lib/sonar-ant-task-2.1.jar" /> 
@@ -35,8 +35,7 @@
 <path id="sonar.libraries">
                  <path refid="compile.classpath"/>
              </path>     
-         <sonar key="${artifact.id}" version="${app.version}" />
-    </target>
+            </target>
 
     <target name="init">
         <tstamp/>
